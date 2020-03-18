@@ -1,2 +1,0 @@
-# practice-dubbo
-# dubboPractice-order
