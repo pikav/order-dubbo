@@ -1,0 +1,13 @@
+com\order\server\util\DataFormatUtil.class
+com\order\server\controller\MyOrderController.class
+com\order\server\util\RedisUtil.class
+com\order\server\controller\DubboTestController.class
+com\order\server\BootAppliction.class
+com\order\server\util\ValidateUtil.class
+com\order\server\util\ConstantsUtil.class
+com\order\server\config\RedisConfig.class
+com\order\server\controller\KafkaTestController.class
+com\order\server\service\CommodityService.class
+com\order\server\controller\CommodityController.class
+com\order\server\service\MyOrderService.class
+com\order\server\util\HttpServiceUtil.class

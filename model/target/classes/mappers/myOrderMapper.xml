@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.order.model.mapper.MyOrderMapper">
+
+  <resultMap id="BaseResultMap" type="com.order.model.entity.MyOrder">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="commodityCode" jdbcType="VARCHAR" property="commoditycode" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+  </resultMap>
+
+    <resultMap id="myOrderListResultMap" type="com.order.model.entity.MyOrder">
+        <id column="ID" jdbcType="VARCHAR" property="id"></id>
+        <result column="NUMBER" jdbcType="INTEGER" property="number"></result>
+        <association property="commodity" javaType="com.storage.model.entity.Commodity">
+            <result column ="NAME" jdbcType="VARCHAR" property="name"></result>
+            <result column="DESCRIPTION" jdbcType="VARCHAR" property="description"></result>
+            <result column="PRICE" jdbcType="DECIMAL" property="price"></result>
+        </association>
+    </resultMap>
+
+  <sql id="baseColumn">
+    id, code, name, description, price, isValid, createdTime,updateTime,number
+  </sql>
+
+  <select id="myOrderList" resultMap="myOrderListResultMap">
+    SELECT
+    o.id AS ID,
+    c.name AS NAME ,
+    c.description AS DESCRIPTION,
+    c.price AS PRICE,
+    o.number AS NUMBER
+    from dubbo_order.t_sys_myorder o, dubbo_storage.t_sys_commodity c
+    WHERE o.commodityCode = c.`code` AND c.isvalid = 'Y' ORDER BY c.`code`
+  </select>
+
+  <insert id="addShopCart" parameterType="com.order.model.entity.MyOrder">
+    INSERT INTO t_sys_myorder(id,commoditycode,number)
+    VALUES (#{id},#{commoditycode},#{number})
+  </insert>
+
+  <select id="sumShopCarts" parameterType="String" resultType="Integer">
+    SELECT COUNT(id)
+    FROM t_sys_myorder
+    WHERE commodityCode = #{commodityCode}
+  </select>
+
+  <update id="updateShopCarts" parameterType="String" >
+    UPDATE t_sys_myorder
+    set number = number + 1
+    WHERE commodityCode = #{commodityCode}
+  </update>
+
+</mapper>
