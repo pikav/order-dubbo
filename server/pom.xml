@@ -30,7 +30,7 @@
 
         <zookeeper.version>3.4.10</zookeeper.version>
         <curator.version>2.12.0</curator.version>
-        <dubbo.version>2.6.4</dubbo.version>
+        <dubbo.version>2.6.12</dubbo.version>
 
         <resteasy.version>3.0.7.Final</resteasy.version>
         <okhttp.version>3.1.2</okhttp.version>
